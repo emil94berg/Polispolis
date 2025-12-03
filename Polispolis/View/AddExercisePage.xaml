@@ -4,8 +4,15 @@
              x:Class="Polispolis.View.AddExercisePage"
              Title="Add Exercise Here: ">
     <VerticalStackLayout>
-        <Entry Placeholder="Name of new exercise"
+        <Entry Placeholder="Name of exercise"
                Text="{Binding ExerciseName}"></Entry>
-        
+        <Entry Placeholder="Description"
+               Text="{Binding ExerciseDescription}"></Entry>
+        <Entry Placeholder="Goal"
+               Text="{Binding ExerciseGoal}"></Entry>
+        <Picker Title="Select Unit" 
+                ItemsSource="{Binding ExerciseUnitList}"
+                SelectedItem="{Binding ExerciseUnit}"></Picker>
+        <Button Text="Save Exercise" Clicked="OnSaveExerciseClicked"></Button>
     </VerticalStackLayout>
 </ContentPage>

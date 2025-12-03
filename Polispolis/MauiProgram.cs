@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using Polispolis.View;
 using Polispolis.ViewModel;
+using Polispolis.Factory.Interface;
+using Polispolis.Factory;
 
 namespace Polispolis
 {
@@ -22,6 +24,7 @@ namespace Polispolis
             builder.Services.AddTransient<AddExercisePage>();
             builder.Services.AddTransient<LoginPageViewModel>();
             builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddSingleton(typeof(ICrudFactory<>), typeof(CrudFactory<>));  
 
 #if DEBUG
             builder.Logging.AddDebug();

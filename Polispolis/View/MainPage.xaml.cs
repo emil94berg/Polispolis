@@ -20,5 +20,10 @@ namespace Polispolis
         {
             await Shell.Current.GoToAsync(nameof(AddExercisePage));
         }
+
+        private async void AddCategory_Clicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync(nameof(AddCategoryPage));
+        }
     }
 }

@@ -6,7 +6,7 @@ using Polispolis.DAL.Interfaces;
 
 namespace Polispolis.Factory
 {
-    class CrudFactory<TModel> : ICrudFactory<TModel> where TModel : class, new()
+    public class CrudFactory<TModel> : ICrudFactory<TModel> where TModel : class, new()
     {
         private readonly IDatabaseService _databaseService;
         public CrudFactory(IDatabaseService databaseService)
@@ -23,11 +23,15 @@ namespace Polispolis.Factory
             var database = _databaseService.Database;
             await database.DeleteAsync(model);
         }
-        public async Task<List<TModel>> GetAll(TModel model)
+        public async Task<List<TModel>> GetAllAsync()
         {
             var database = _databaseService.Database;
-            var list = await database.Table<TModel>().ToListAsync();
-            return list;
+            return await database.Table<TModel>().ToListAsync();
+        }
+        public async Task UpdateAsync(TModel model)
+        {
+            var database = _databaseService.Database;
+            await database.UpdateAsync(model);
         }
     }
 }

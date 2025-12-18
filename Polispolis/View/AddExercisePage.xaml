@@ -4,6 +4,11 @@
              x:Class="Polispolis.View.AddExercisePage"
              Title="Add Exercise Here: ">
     <VerticalStackLayout>
+        <Picker Title="Select Category"
+                ItemsSource="{Binding ExerciseCategoriesList}"
+                ItemDisplayBinding="{Binding Name}"
+                SelectedItem="{Binding SelectedCategory}"
+                ></Picker>
         <Entry Placeholder="Name of exercise"
                Text="{Binding ExerciseName}"></Entry>
         <Entry Placeholder="Description"
@@ -13,6 +18,10 @@
         <Picker Title="Select Unit" 
                 ItemsSource="{Binding ExerciseUnitList}"
                 SelectedItem="{Binding ExerciseUnit}"></Picker>
-        <Button Text="Save Exercise" Clicked="OnSaveExerciseClicked"></Button>
+        <Button Text="Save Exercise" Command="{Binding SaveExerciseCommand}"></Button>
+        <Picker Title="Select Existing Exercise"
+                ItemsSource="{Binding ExistingExercisesList}"
+                ItemDisplayBinding="{Binding Name}"
+                ></Picker>
     </VerticalStackLayout>
 </ContentPage>

@@ -8,10 +8,7 @@ namespace Polispolis.DAL.Interfaces
 {
     public interface IDatabaseService
     {
-        Task InitializeAsync();
-        Task AddExerciseAsync(Exercise exercise);
-        Task<List<Exercise>> GetAllExercisesAsync();
-        Task<List<Exercise>> GetExerciseByCategoryAsync(int categoryId);
         SQLiteAsyncConnection Database { get; }
+        Task InitializeAsync();
     }
 }

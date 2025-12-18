@@ -34,13 +34,21 @@
                     SemanticProperties.Hint="Log_In"
                     Clicked="LogInButton_Clicked"/>
                 <Button
-                    Grid.Row="0"
+                    Grid.Row="1"
                     Grid.Column="1"
                     Margin="10"
                     Text="Add Exercise"
                     x:Name="AddExerciseButton"
                     SemanticProperties.Hint="Add_Exercise"
                     Clicked="AddExerciseButton_Clicked"/>
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="10"
+                    Text="Add Category"
+                    x:Name="AddCaregoryButton"
+                    SemanticProperties.Hint="Add_Exercise"
+                    Clicked="AddCategory_Clicked"/>
 
 
             </Grid>

@@ -12,6 +12,13 @@ namespace Polispolis.DAL
         public DatabaseService()
         {
             Database = new SQLiteAsyncConnection(DatabaseConfig.DbPath);
+            
+        }
+        public static async Task<DatabaseService> CreateAsync()
+        {
+            var svc = new DatabaseService();
+            await svc.InitializeAsync();
+            return svc;
         }
 
         public async Task InitializeAsync()
@@ -19,19 +26,6 @@ namespace Polispolis.DAL
             await Database.CreateTableAsync<Model.Exercise>();
             await Database.CreateTableAsync<Model.Category>();
         }
-        public async Task AddExerciseAsync(Model.Exercise exercise)
-        {
-            await Database.InsertAsync(exercise);
-        }
-        public async Task<List<Model.Exercise>> GetAllExercisesAsync()
-        {
-            return await Database.Table<Model.Exercise>().ToListAsync();
-        }
-        public async Task<List<Model.Exercise>> GetExerciseByCategoryAsync(int CategoryId)
-        {
-            return await Database.Table<Model.Exercise>()
-                .Where(e => e.Id == CategoryId)
-                .ToListAsync();
-        }
+        
     }
 }

@@ -18,7 +18,8 @@ namespace Polispolis.Model
             Kg,
             Km,
             Units,
-            Time 
+            Time,
+            Reps
         }
         public Units? Unit { get; set; }
         public double Goal { get; set; }

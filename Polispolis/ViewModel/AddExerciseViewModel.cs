@@ -106,8 +106,8 @@ namespace Polispolis.ViewModel
                 }
             } 
         }
-        private List<Exercise> _existingExercisesList;
-        public List<Exercise> ExistingExercisesList { get => _existingExercisesList;
+        private ObservableCollection<Exercise> _existingExercisesList;
+        public ObservableCollection<Exercise> ExistingExercisesList { get => _existingExercisesList;
             set
             {
                 if(_existingExercisesList != value)
@@ -170,7 +170,7 @@ namespace Polispolis.ViewModel
         {
             Console.WriteLine("Save Exercise Clicked");
             if (!string.IsNullOrEmpty(ExerciseName) && !string.IsNullOrEmpty(ExerciseDescription)
-                && !double.IsNaN(ExerciseGoal))
+                && !double.IsNaN(ExerciseGoal) && SelectedCategory != null)
             {
                 Exercise exercise = new Exercise
                 {
@@ -181,6 +181,16 @@ namespace Polispolis.ViewModel
                     Unit = ExerciseUnit
                 };
                 await _exerciseCrudFactory.CreateAsync(exercise);
+                await Shell.Current.DisplayAlertAsync($"Successfully saved '{exercise.Name}'!",
+                    "Your exercise has been saved!",
+                    "Ok");
+                SelectedCategory = new();
+                ExerciseName = "";
+                ExerciseDescription = "";
+                ExerciseGoal = 0;
+                ExerciseUnit = new();
+
+
             }
         }
     }

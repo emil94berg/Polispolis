@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace Polispolis.Factory.Interface
     {
         Task CreateAsync(TModel model);
         Task DeleteAsync(TModel model);
-        Task<List<TModel>> GetAllAsync();
+        Task<ObservableCollection<TModel>> GetAllAsync();
         Task UpdateAsync(TModel model);   
     }
 }

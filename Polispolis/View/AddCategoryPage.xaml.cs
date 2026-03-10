@@ -11,7 +11,11 @@ public partial class AddCategoryPage : ContentPage
         _viewModel = viewModel;
         BindingContext = _viewModel;
     }
-
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        await _viewModel.InitializeAsync();
+    }
 
     //private readonly AddExerciseViewModel _viewModel;
 

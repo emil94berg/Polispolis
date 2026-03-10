@@ -3,25 +3,48 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Polispolis.View.AddExercisePage"
              Title="Add Exercise Here: ">
-    <VerticalStackLayout>
-        <Picker Title="Select Category"
-                ItemsSource="{Binding ExerciseCategoriesList}"
-                ItemDisplayBinding="{Binding Name}"
-                SelectedItem="{Binding SelectedCategory}"
-                ></Picker>
-        <Entry Placeholder="Name of exercise"
-               Text="{Binding ExerciseName}"></Entry>
-        <Entry Placeholder="Description"
-               Text="{Binding ExerciseDescription}"></Entry>
-        <Entry Placeholder="Goal"
-               Text="{Binding ExerciseGoal}"></Entry>
-        <Picker Title="Select Unit" 
-                ItemsSource="{Binding ExerciseUnitList}"
-                SelectedItem="{Binding ExerciseUnit}"></Picker>
-        <Button Text="Save Exercise" Command="{Binding SaveExerciseCommand}"></Button>
-        <Picker Title="Select Existing Exercise"
-                ItemsSource="{Binding ExistingExercisesList}"
-                ItemDisplayBinding="{Binding Name}"
-                ></Picker>
-    </VerticalStackLayout>
+    <Grid Padding="25">
+        <Border
+                BackgroundColor="{StaticResource DarkGray}"
+                Padding="25"
+                StrokeThickness="0"
+                Shadow="10,10,20,Black">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="25"/>
+            </Border.StrokeShape>
+
+
+            <Grid RowDefinitions="*, Auto">
+                <VerticalStackLayout Grid.Row="0" Spacing="12">
+                    <!-- Title -->
+                    <Label Text="Add New Exercise"
+                    FontSize="32"
+                    HorizontalOptions="Center"
+                    FontAttributes="Bold"
+                    TextColor="{StaticResource Brown}" />
+                    <Picker Title="Select Category"
+                    ItemsSource="{Binding ExerciseCategoriesList}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding SelectedCategory}"></Picker>
+                    <Entry 
+                    Placeholder="Name of exercise"
+                    Text="{Binding ExerciseName}"></Entry>
+                    <Entry  Placeholder="Description"
+                    Text="{Binding ExerciseDescription}"></Entry>
+                    <Entry  Placeholder="Goal"
+                    Text="{Binding ExerciseGoal}"></Entry>
+                    <Picker Title="Select Unit" 
+                    ItemsSource="{Binding ExerciseUnitList}"
+                    SelectedItem="{Binding ExerciseUnit}"></Picker>
+                    <!--<Picker Title="Select Existing Exercise"
+                    ItemsSource="{Binding ExistingExercisesList}"
+                    ItemDisplayBinding="{Binding Name}"
+                    ></Picker>-->
+                </VerticalStackLayout>
+                <Button Grid.Row="1" Text="Save Exercise" BackgroundColor="{StaticResource Brown}" Command="{Binding SaveExerciseCommand}"></Button>
+            </Grid>
+            
+        </Border>
+    </Grid>
+    
 </ContentPage>

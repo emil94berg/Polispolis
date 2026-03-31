@@ -27,27 +27,27 @@
 
                     <!-- Input -->
                     <Border BackgroundColor="#2A2A2A"
-            Padding="12"
-            StrokeThickness="0">
+                            Padding="12"
+                            StrokeThickness="0">
 
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="12"/>
                         </Border.StrokeShape>
 
                         <Entry Placeholder="Category name"
-               Text="{Binding CategoryName}"
-               FontSize="20"
-               PlaceholderColor="{StaticResource BrownPlaceholder}"
-               TextColor="{StaticResource Brown}" />
+                               Text="{Binding CategoryName}"
+                               FontSize="20"
+                               PlaceholderColor="{StaticResource BrownPlaceholder}"
+                               TextColor="{StaticResource Brown}" />
                     </Border>
                     <!-- Button -->
                     <Button Text="Save Category"
-            Command="{Binding SaveCategoryCommand}"
-            HeightRequest="55"
-            FontSize="20"
-            CornerRadius="15"
-            BackgroundColor="{StaticResource Brown}"
-            TextColor="White"/>
+                            Command="{Binding SaveCategoryCommand}"
+                            HeightRequest="55"
+                            FontSize="20"
+                            CornerRadius="15"
+                            BackgroundColor="{StaticResource Brown}"
+                            TextColor="White"/>
 
                     <!-- Existing Categories -->
                     <CollectionView ItemsSource="{Binding MyCategories}">

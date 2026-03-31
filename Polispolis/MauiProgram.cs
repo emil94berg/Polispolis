@@ -28,6 +28,8 @@ namespace Polispolis
             builder.Services.AddTransient<AddExercisePage>();
             builder.Services.AddTransient<LoginPageViewModel>();
             builder.Services.AddTransient<AddCategoryViewModel>();
+            builder.Services.AddTransient<StartExerciseViewModel>();
+            builder.Services.AddTransient<CreateSessionViewModel>();
             builder.Services.AddTransient<LoginPage>();
             builder.Services.AddSingleton<App>();
             builder.Services.AddSingleton(typeof(ICrudFactory<>), typeof(CrudFactory<>));  

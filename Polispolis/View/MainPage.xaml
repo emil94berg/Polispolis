@@ -37,7 +37,7 @@
                     Clicked="LogInButton_Clicked"
                     BackgroundColor="{StaticResource Orange}"/>-->
                 <Button
-                    Grid.Row="1"
+                    Grid.Row="0"
                     Grid.Column="1"
                     Margin="10"
                     Text="Add Exercise"
@@ -46,14 +46,35 @@
                     Clicked="AddExerciseButton_Clicked"
                     BackgroundColor="{StaticResource Orange}"/>
                 <Button
-                    Grid.Row="1"
+                    Grid.Row="0"
                     Grid.Column="0"
                     Margin="10"
                     Text="Add Category"
-                    x:Name="AddCaregoryButton"
+                    x:Name="AddCategoryButton"
                     SemanticProperties.Hint="Add_Exercise"
                     Clicked="AddCategory_Clicked"
                     BackgroundColor="{StaticResource Orange}"/>
+                <Button 
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="10"
+                    Text="Exercise"
+                    x:Name="StartExerciseButton"
+                    SemanticProperties.Hint="Start_Exercise"
+                    Clicked="StartExercise_Clicked"
+                    BackgroundColor="{StaticResource Orange}"/>
+                <Button 
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="10"
+                    Text="Create Session"
+                    x:Name="CreateSessionButton"
+                    SemanticProperties.Hint="Create_Session"
+                    Clicked="CreateSession_Clicked"
+                    BackgroundColor="{StaticResource Orange}"/>
+                    
+
+
 
 
             </Grid>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Polispolis.View.CreateSession"
+             Title="CreateSession">
+    <Grid>
+        <Border
+            BackgroundColor="{StaticResource DarkGray}"
+            Padding="25"
+            StrokeThickness="0"
+            Shadow="10,10,20, black">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="25"></RoundRectangle>
+            </Border.StrokeShape>
+
+            <Grid RowDefinitions="*, Auto">
+                <VerticalStackLayout Grid.Row="0" Spacing="12" >
+                    <Label Text="Add a workout template"
+                           FontSize="26"
+                           HorizontalOptions="Center"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource Brown}"/>
+                    <Picker Title="Number of exercise" ></Picker>
+                    
+
+
+
+
+
+
+
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Row="1">
+                    <Grid ColumnDefinitions="auto, auto" 
+                          ColumnSpacing="20"
+                          HorizontalOptions="Center">
+                        <Button Grid.Column="0"
+                                Text="+ Exercise +"
+                                Command="{Binding AddExerciseOptionCommand}"></Button>
+                        <Button Grid.Column="1" 
+                                Text="- Exercise -"
+                                Command="{Binding RemoveExerciseOptionCommand}"></Button>
+                    </Grid>
+                </VerticalStackLayout>
+                
+                
+            </Grid>
+            
+            
+        </Border>
+    </Grid>
+</ContentPage>

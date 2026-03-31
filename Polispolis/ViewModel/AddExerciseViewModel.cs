@@ -189,8 +189,33 @@ namespace Polispolis.ViewModel
                 ExerciseDescription = "";
                 ExerciseGoal = 0;
                 ExerciseUnit = new();
-
-
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(ExerciseName))
+                {
+                    await Shell.Current.DisplayAlertAsync("No name entered",
+                        "Please select a name for your exercise",
+                        "Ok");
+                }
+                else if (!string.IsNullOrEmpty(ExerciseDescription))
+                {
+                    await Shell.Current.DisplayAlertAsync("No description entered",
+                        "Please select a description for your exercise",
+                        "Ok");
+                }
+                else if (!double.IsNaN(ExerciseGoal))
+                {
+                    await Shell.Current.DisplayAlertAsync("No goal entered",
+                        "Please select a goal for your exercise",
+                        "Ok");
+                }
+                else if(SelectedCategory == null)
+                {
+                    await Shell.Current.DisplayAlertAsync("No category entered",
+                        "Please select a category for your exercise",
+                        "Ok");
+                }
             }
         }
     }

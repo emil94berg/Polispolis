@@ -1,18 +1,15 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Polispolis.Model
 {
-    public class Category
+    public class SessionTemplate
     {
         [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        public int Id{ get; set; }
         public string Name { get; set; }
-        [Ignore]
-        public List<Exercise> Exercises { get; set; }
     }
-
 }

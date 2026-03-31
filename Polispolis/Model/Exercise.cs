@@ -1,21 +1,27 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Polispolis.Model
 {
-    internal class Exercise
+    public class Exercise
     {
-        public string CategoryId { get; set; }
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+        public int CategoryId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public enum Units
         {
             Kg,
-            M,
-            Time
-        } 
-        public Units Unit { get; set; }
-        public int Reps { get; set; }
+            Km,
+            Units,
+            Time,
+            Reps
+        }
+        public Units? Unit { get; set; }
+        public double Goal { get; set; }
     }
 }

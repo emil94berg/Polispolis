@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Polispolis.View.AddCategoryPage"
+             Title="Add Category"
+             BackgroundColor="{StaticResource BGGray}">
+
+    <Grid Padding="25">
+
+        <Border BackgroundColor="{StaticResource DarkGray}"
+                Padding="25"
+                StrokeThickness="0"
+                Shadow="10,10,20,Black">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="25"/>
+            </Border.StrokeShape>
+            <ScrollView>
+                <VerticalStackLayout Spacing="25">
+
+                    <!-- Title -->
+                    <Label Text="Add New Category"
+                           FontSize="32"
+                           HorizontalOptions="Center"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource Brown}" />
+
+                    <!-- Input -->
+                    <Border BackgroundColor="#2A2A2A"
+                            Padding="12"
+                            StrokeThickness="0">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="12"/>
+                        </Border.StrokeShape>
+
+                        <Entry Placeholder="Category name"
+                               Text="{Binding CategoryName}"
+                               FontSize="20"
+                               PlaceholderColor="{StaticResource BrownPlaceholder}"
+                               TextColor="{StaticResource Brown}" />
+                    </Border>
+                    <!-- Button -->
+                    <Button Text="Save Category"
+                            Command="{Binding SaveCategoryCommand}"
+                            HeightRequest="55"
+                            FontSize="20"
+                            CornerRadius="15"
+                            BackgroundColor="{StaticResource Brown}"
+                            TextColor="White"/>
+
+                    <!-- Existing Categories -->
+                    <CollectionView ItemsSource="{Binding MyCategories}">
+
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical"
+                                 Span="2"></GridItemsLayout>
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border BackgroundColor="Beige"
+                                        Padding="10"
+                                        Margin="5"
+                                        Shadow="0,4,10, #00000040"
+                                        StrokeThickness="0">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="12"></RoundRectangle>
+                                    </Border.StrokeShape>
+
+                                    <Grid RowDefinitions="Auto ,Auto">
+                                        <Label Text="{Binding Name}"
+                               TextDecorations="Underline"
+                               FontSize="20"
+                               HorizontalTextAlignment="Center"
+                               TextColor="{StaticResource Brown}"></Label>
+                                        <Grid Grid.Row="1" ColumnDefinitions="Auto, Auto" Padding="2" ColumnSpacing="10">
+                                            <ImageButton Grid.Column="1"
+                                                         Source="updateicon.png"
+                                                         HeightRequest="5"
+                                                         WidthRequest="5"
+                                                         BackgroundColor="Transparent"
+                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.UpdateCategoryCommand}"
+                                                         CommandParameter="{Binding .}"></ImageButton>
+                                            <ImageButton Source="deleteicon.png"
+                                                         BackgroundColor="Transparent"
+                                                         Grid.Column="0"
+                                                         HeightRequest="5"
+                                                         WidthRequest="5"
+                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteCategoryCommand}"
+                                                         CommandParameter="{Binding .}"></ImageButton>
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Border>
+    </Grid>
+</ContentPage>

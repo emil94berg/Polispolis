@@ -1,6 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
+using Polispolis.DAL;
+using Polispolis.DAL.Interfaces;
+using Polispolis.Factory;
+using Polispolis.Factory.Interface;
 using Polispolis.View;
 using Polispolis.ViewModel;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Polispolis
 {
@@ -18,16 +23,29 @@ namespace Polispolis
                 });
 
             //Di
+            builder.Services.AddSingleton<IDatabaseService, DatabaseService>();
             builder.Services.AddTransient<AddExerciseViewModel>();
             builder.Services.AddTransient<AddExercisePage>();
             builder.Services.AddTransient<LoginPageViewModel>();
+            builder.Services.AddTransient<AddCategoryViewModel>();
+            builder.Services.AddTransient<StartExerciseViewModel>();
+            builder.Services.AddTransient<CreateSessionViewModel>();
             builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddSingleton<App>();
+            builder.Services.AddSingleton(typeof(ICrudFactory<>), typeof(CrudFactory<>));  
+            
 
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
 
-            return builder.Build();
+            var app = builder.Build();
+
+            // Ensure database tables are created before the app and view models use the DB.
+            // Call InitializeAsync synchronously at startup so consumers can safely query immediately.
+            
+
+            return app;
         }
     }
 }

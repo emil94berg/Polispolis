@@ -1,11 +1,13 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Polispolis.DAL;
 using Polispolis.DAL.Interfaces;
 using Polispolis.Factory;
 using Polispolis.Factory.Interface;
+using Polispolis.Services;
+using Polispolis.Services.Interfaces;
 using Polispolis.View;
 using Polispolis.ViewModel;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Polispolis
 {
@@ -32,7 +34,8 @@ namespace Polispolis
             builder.Services.AddTransient<CreateSessionViewModel>();
             builder.Services.AddTransient<LoginPage>();
             builder.Services.AddSingleton<App>();
-            builder.Services.AddSingleton(typeof(ICrudFactory<>), typeof(CrudFactory<>));  
+            builder.Services.AddSingleton(typeof(ICrudFactory<>), typeof(CrudFactory<>));
+            builder.Services.AddScoped<IExerciseService, ExerciseService>();
             
 
 #if DEBUG

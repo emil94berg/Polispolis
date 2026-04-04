@@ -35,5 +35,6 @@ namespace Polispolis.Factory
             var database = _databaseService.Database;
             await database.UpdateAsync(model);
         }
+        
     }
 }

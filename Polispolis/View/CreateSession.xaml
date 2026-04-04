@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Polispolis.View.CreateSession"
+             xmlns:behaviors="clr-namespace:Polispolis.Helpers.Behaviors"
+             BackgroundColor="{StaticResource BGGray}"
              Title="CreateSession">
     <Grid>
         <Border
@@ -13,24 +15,48 @@
                 <RoundRectangle CornerRadius="25"></RoundRectangle>
             </Border.StrokeShape>
 
-            <Grid RowDefinitions="*, Auto">
+            <Grid RowDefinitions="*, Auto, Auto">
                 <VerticalStackLayout Grid.Row="0" Spacing="12" >
                     <Label Text="Add a workout template"
                            FontSize="26"
                            HorizontalOptions="Center"
                            FontAttributes="Bold"
                            TextColor="{StaticResource Brown}"/>
-                    <Picker Title="Number of exercise" ></Picker>
-                    
-
-
-
-
-
-
-
+                    <Entry Placeholder="Number of exercises"
+                           Text="{Binding NumberOfExercises}"
+                           Keyboard="Numeric">
+                        <Entry.Behaviors>
+                            <behaviors:NumbersOnlyBehavior/>
+                        </Entry.Behaviors>
+                    </Entry>
                 </VerticalStackLayout>
                 <VerticalStackLayout Grid.Row="1">
+                    <CollectionView ItemsSource="{Binding AddExerciseCollection}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border>
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="10"></RoundRectangle>
+                                    </Border.StrokeShape>
+                                    <VerticalStackLayout Padding="5">
+                                        <Picker Title="Select Category"
+                                        ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.CategoryList}"
+                                        SelectedItem="{Binding SelectedCategory}"
+                                        ItemDisplayBinding="{Binding Name}">
+                                            
+                                        </Picker>
+                                        <Picker Title="Add Exercise"
+                                        ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.CategoryExerciseList}"
+                                        SelectedItem="{Binding SelectedExercise}"
+                                        ItemDisplayBinding="{Binding Name}"
+                                    ></Picker>
+                                    </VerticalStackLayout>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Row="2">
                     <Grid ColumnDefinitions="auto, auto" 
                           ColumnSpacing="20"
                           HorizontalOptions="Center">

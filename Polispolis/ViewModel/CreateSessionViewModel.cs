@@ -16,29 +16,38 @@ namespace Polispolis.ViewModel
     {
         private ICrudFactory<Category> _categoryCrudFactory;
         private ICrudFactory<Exercise> _exerciseCrudFactory;
+        private ICrudFactory<SessionTemplate> _sessionTemplateCrudFactory;
         private IExerciseService _exerciseService;
        
-        public CreateSessionViewModel(ICrudFactory<Category> categoryCrudFactory, ICrudFactory<Exercise> exerciseCrudFactory, IExerciseService exerciseService)
+        public CreateSessionViewModel(ICrudFactory<Category> categoryCrudFactory, 
+            ICrudFactory<Exercise> exerciseCrudFactory, 
+            IExerciseService exerciseService,
+            ICrudFactory<SessionTemplate> sessionTemplateCrudFactory)
         {
             _categoryCrudFactory = categoryCrudFactory;
             _exerciseCrudFactory = exerciseCrudFactory;
+            _sessionTemplateCrudFactory = sessionTemplateCrudFactory;
             _exerciseService = exerciseService;
+            RemoveExerciseOptionCommand = new Command(async () => await OnRemoveExerciseOption());
+            AddExerciseOptionCommand = new Command(async () => await OnAddExerciseOption());
+            SaveSessionTemplateCommand = new Command(async () => await OnSaveSessionTemplateAsync());
         }
         public ICommand RemoveExerciseOptionCommand { get; }
         public ICommand AddExerciseOptionCommand { get;  }
-
-        private int _numberOfExercises;
-        public int NumberOfExercises { get => _numberOfExercises; 
+        public ICommand SaveSessionTemplateCommand { get; }
+        private string _sessionName;
+        public string SessionName { get => _sessionName; 
             set
-            { 
-                if(_numberOfExercises != value)
+            {
+                if(_sessionName != value)
                 {
-                    _numberOfExercises = value;
+                    _sessionName = value;
                     OnPropertyChanged();
-                    OnNumberOfExerciseChanged(value);
                 }
             }
         }
+
+        
         private ObservableCollection<Exercise> _addExerciseCollection = new();
         public ObservableCollection<Exercise> AddExerciseCollection { get => _addExerciseCollection;
             set
@@ -56,7 +65,7 @@ namespace Polispolis.ViewModel
             {
                 if(_categoryList != value)
                 {
-                    _categoryList = value;
+                   _categoryList = value;
                     OnPropertyChanged();
                     OnChangeExerciseList();
                 }
@@ -94,17 +103,16 @@ namespace Polispolis.ViewModel
         }
 
 
-
-        private void OnNumberOfExerciseChanged(int value)
+        private async Task OnRemoveExerciseOption()
         {
-            _addExerciseCollection.Clear();
-            if(value != 0)
+            if(AddExerciseCollection.Count > 0)
             {
-                for(int i = 0; i < value; i++)
-                {
-                    AddExerciseCollection.Add(new Exercise());
-                }
+                AddExerciseCollection.RemoveAt(AddExerciseCollection.Count - 1);
             }
+        }
+        private async Task OnAddExerciseOption()
+        {
+            AddExerciseCollection.Add(new Exercise());
         }
 
 
@@ -116,6 +124,38 @@ namespace Polispolis.ViewModel
         public async Task InitializeAsync()
         {
             CategoryList = await _categoryCrudFactory.GetAllAsync();
+        }
+        public async Task OnSaveSessionTemplateAsync()
+        {
+            if (string.IsNullOrEmpty(SessionName))
+            {
+                await Shell.Current.DisplayAlertAsync("Please enter a session name", "Session name cannot be empty", "OK");
+                return;
+            }
+            else
+            {
+                var newSessionTemplate = new SessionTemplate
+                {
+                    Name = SessionName
+                };
+                await _sessionTemplateCrudFactory.CreateAsync(newSessionTemplate);
+                
+
+                foreach (var item in AddExerciseCollection)
+                {
+                    var sessionExercise = new SessionExercise
+                    {
+                        ExerciseId = item.Id,
+                        SessionTemplateId = newSessionTemplate.Id
+                    };
+                }
+
+
+
+
+
+                
+            }
         }
     }
 }

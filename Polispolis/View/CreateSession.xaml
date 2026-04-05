@@ -15,57 +15,64 @@
                 <RoundRectangle CornerRadius="25"></RoundRectangle>
             </Border.StrokeShape>
 
-            <Grid RowDefinitions="*, Auto, Auto">
+            <Grid RowDefinitions="Auto, *, Auto">
                 <VerticalStackLayout Grid.Row="0" Spacing="12" >
                     <Label Text="Add a workout template"
                            FontSize="26"
                            HorizontalOptions="Center"
                            FontAttributes="Bold"
                            TextColor="{StaticResource Brown}"/>
-                    <Entry Placeholder="Number of exercises"
-                           Text="{Binding NumberOfExercises}"
-                           Keyboard="Numeric">
-                        <Entry.Behaviors>
-                            <behaviors:NumbersOnlyBehavior/>
-                        </Entry.Behaviors>
+                    <Entry Placeholder="Name of template"
+                           Text="{Binding SessionName}"
+                           Keyboard="Text">
                     </Entry>
                 </VerticalStackLayout>
-                <VerticalStackLayout Grid.Row="1">
-                    <CollectionView ItemsSource="{Binding AddExerciseCollection}">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <Border>
-                                    <Border.StrokeShape>
-                                        <RoundRectangle CornerRadius="10"></RoundRectangle>
-                                    </Border.StrokeShape>
-                                    <VerticalStackLayout Padding="5">
-                                        <Picker Title="Select Category"
-                                        ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.CategoryList}"
-                                        SelectedItem="{Binding SelectedCategory}"
-                                        ItemDisplayBinding="{Binding Name}">
-                                            
-                                        </Picker>
-                                        <Picker Title="Add Exercise"
-                                        ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.CategoryExerciseList}"
-                                        SelectedItem="{Binding SelectedExercise}"
-                                        ItemDisplayBinding="{Binding Name}"
-                                    ></Picker>
-                                    </VerticalStackLayout>
-                                </Border>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </VerticalStackLayout>
+                
+                    
+                        
+                        <CollectionView ItemsSource="{Binding AddExerciseCollection}" Grid.Row="1">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border>
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="10"></RoundRectangle>
+                                        </Border.StrokeShape>
+                                        <VerticalStackLayout Padding="5">
+                                            <Picker Title="Select Category"
+                        ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.CategoryList}"
+                        SelectedItem="{Binding SelectedCategory}"
+                        ItemDisplayBinding="{Binding Name}">
+                                            </Picker>
+                                            <Picker Title="Add Exercise"
+                        ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.CategoryExerciseList}"
+                        SelectedItem="{Binding SelectedExercise}"
+                        ItemDisplayBinding="{Binding Name}"
+                    ></Picker>
+                                        </VerticalStackLayout>
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                
+                
                 <VerticalStackLayout Grid.Row="2">
-                    <Grid ColumnDefinitions="auto, auto" 
+                    <Grid ColumnDefinitions="auto, auto, auto" 
                           ColumnSpacing="20"
                           HorizontalOptions="Center">
                         <Button Grid.Column="0"
                                 Text="+ Exercise +"
-                                Command="{Binding AddExerciseOptionCommand}"></Button>
+                                Command="{Binding AddExerciseOptionCommand}"
+                                BackgroundColor="LightGreen"></Button>
                         <Button Grid.Column="1" 
                                 Text="- Exercise -"
-                                Command="{Binding RemoveExerciseOptionCommand}"></Button>
+                                Command="{Binding RemoveExerciseOptionCommand}"
+                                BackgroundColor="Red"></Button>
+                        <Button
+                            Grid.Column="2"
+                            Text="Save"
+                            Command="{Binding SaveSessionTemplateCommand}"
+                            BackgroundColor="{StaticResource Orange}"
+                            ></Button>
                     </Grid>
                 </VerticalStackLayout>
                 

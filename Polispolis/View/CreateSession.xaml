@@ -39,15 +39,15 @@
                                         </Border.StrokeShape>
                                         <VerticalStackLayout Padding="5">
                                             <Picker Title="Select Category"
-                        ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.CategoryList}"
-                        SelectedItem="{Binding SelectedCategory}"
-                        ItemDisplayBinding="{Binding Name}">
-                                            </Picker>
-                                            <Picker Title="Add Exercise"
-                        ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.CategoryExerciseList}"
-                        SelectedItem="{Binding SelectedExercise}"
-                        ItemDisplayBinding="{Binding Name}"
-                    ></Picker>
+                                            ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.CategoryList}"
+                                            SelectedItem="{Binding SelectedCategory}"
+                                            ItemDisplayBinding="{Binding Name}">
+                                                                </Picker>
+                                                                <Picker Title="Add Exercise"
+                                            ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.CategoryExerciseList}"
+                                            SelectedItem="{Binding SelectedExercise}"
+                                            ItemDisplayBinding="{Binding Name}"
+                                        ></Picker>
                                         </VerticalStackLayout>
                                     </Border>
                                 </DataTemplate>
